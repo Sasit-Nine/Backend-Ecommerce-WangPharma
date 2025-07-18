@@ -17,7 +17,7 @@ export class ProductEntity {
   @Column({ unique: true, length: 20 })
   pro_code: string;
 
-  @Column({ length: 255 })
+  @Column({ length: 255, nullable: true })
   pro_name: string;
 
   @Column({ length: 255, nullable: true })
@@ -58,6 +58,27 @@ export class ProductEntity {
 
   @Column({ length: 60, nullable: true })
   pro_barcode3: string;
+
+  @Column({ length: 255, nullable: true })
+  pro_imgmain: string;
+
+  @Column({ nullable: true })
+  pro_ratio1: number;
+
+  @Column({ nullable: true })
+  pro_ratio2: number;
+
+  @Column({ nullable: true })
+  pro_ratio3: number;
+
+  @Column({ length: 30, nullable: true })
+  pro_unit1: string;
+
+  @Column({ length: 30, nullable: true })
+  pro_unit2: string;
+
+  @Column({ length: 30, nullable: true })
+  pro_unit3: string;
 
   @Column({ type: 'enum', enum: ['Y', 'N'], default: 'N' })
   pro_isdrug: 'Y' | 'N';

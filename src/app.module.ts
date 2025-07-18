@@ -9,8 +9,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductModule } from './product/product.module';
 =======
 import { EmployeesModule } from './employees/employees.module';
-import { MembersService } from './members/members.service';
-import { MembersModule } from './members/members.module';
 import { ProductsModule } from './products/products.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { ShoppingOrderService } from './shopping-order/shopping-order.service';
@@ -43,7 +41,6 @@ import { ShoppingHeadModule } from './shopping-head/shopping-head.module';
     ProductModule,
 =======
     EmployeesModule,
-    MembersModule,
     ProductsModule,
     ShoppingCartModule,
     ShoppingOrderModule,
@@ -51,6 +48,6 @@ import { ShoppingHeadModule } from './shopping-head/shopping-head.module';
 >>>>>>> 322bcf4a5e84b99b9f52cd1a3712d27779d23365
   ],
   controllers: [AppController],
-  providers: [AppService, MembersService, ShoppingOrderService],
+  providers: [AppService, ShoppingOrderService],
 })
 export class AppModule {}
