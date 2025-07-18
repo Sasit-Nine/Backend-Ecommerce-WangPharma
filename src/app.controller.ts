@@ -76,4 +76,8 @@ export class AppController {
   async deleteCart(@Body() dto: ShoppingCartEntity) {
     return this.cartService.deleteCart(dto);
   }
+  @Get('/ecom/product-coin')
+  async productCoin() {
+    return await this.productsService.listFree();
+  }
 }
