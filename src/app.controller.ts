@@ -2,14 +2,11 @@ import { BadRequestException, Body, Controller, Delete, Get, HttpException, Http
 import { AppService } from './app.service';
 import { AuthService, SigninResponse } from './auth/auth.service';
 import { ProductsService } from './products/products.service';
-// import { CreateProductDto } from './products/create-product.dto';
-import { CreateMemberDto } from './members/create-member.dto';
 import { CreateShoppingCartDto } from './shopping-cart/create-shopping-cart.dto';
 import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
 import { ShoppingOrderService } from './shopping-order/shopping-order.service';
 import { ShoppingOrderEntity } from './shopping-order/shopping-order.entity';
 import { ShoppingCartEntity } from './shopping-cart/shopping-cart.entity';
-
 
 @Controller()
 export class AppController {
@@ -19,7 +16,7 @@ export class AppController {
     private readonly productsService: ProductsService,
     private readonly cartService: ShoppingCartService,
     private readonly shoppingOrderService: ShoppingOrderService,
-
+    
   ) { }
 
   @Post('/ecom/login')
@@ -58,13 +55,13 @@ export class AppController {
     }
   }
 
-@Put('/ecom/cart/:spc_id')
-async updateCartItem(
-  @Param('spc_id', ParseIntPipe) spc_id: number,
-  @Body() updateDto: UpdateCartDto, // ใช้ DTO ที่กำหนดชัดเจน
-) {
-  return this.cartService.updateCart(spc_id, updateDto);
-}
+// @Put('/ecom/cart/:spc_id')
+// async updateCartItem(
+//   @Param('spc_id', ParseIntPipe) spc_id: number,
+//   @Body() updateDto: UpdateCartDto, // ใช้ DTO ที่กำหนดชัดเจน
+// ) {
+//   return this.cartService.updateCart(spc_id, updateDto);
+// }
 
   @Delete('/ecom/cart/remove')
   async deleteCart(@Body() dto: ShoppingCartEntity) {
