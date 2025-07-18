@@ -28,6 +28,9 @@ export class ShoppingCartEntity {
   @Column({ type: 'text', nullable: true })
   spc_comments: string;
 
+  @Column({ type: 'enum', enum: ['0', '1'], default: '0' }) // 0 = not selected , 1 = selected
+  spc_check: '0' | '1';
+
   @ManyToOne(() => UserEntity, (member) => member.shoppingCartItems)
   @JoinColumn({ name: 'mem_id' }) // Using ID for relation
   member: UserEntity;

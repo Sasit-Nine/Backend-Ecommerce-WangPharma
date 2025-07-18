@@ -5,16 +5,13 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-<<<<<<< HEAD
-import { ProductModule } from './product/product.module';
-=======
 import { EmployeesModule } from './employees/employees.module';
 import { ProductsModule } from './products/products.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { ShoppingOrderService } from './shopping-order/shopping-order.service';
 import { ShoppingOrderModule } from './shopping-order/shopping-order.module';
 import { ShoppingHeadModule } from './shopping-head/shopping-head.module';
->>>>>>> 322bcf4a5e84b99b9f52cd1a3712d27779d23365
+import { ShoppingHeadService } from './shopping-head/shopping-head.service';
 
 @Module({
   imports: [
@@ -37,17 +34,13 @@ import { ShoppingHeadModule } from './shopping-head/shopping-head.module';
         synchronize: true,
       }),
     }),
-<<<<<<< HEAD
-    ProductModule,
-=======
     EmployeesModule,
     ProductsModule,
     ShoppingCartModule,
     ShoppingOrderModule,
     ShoppingHeadModule,
->>>>>>> 322bcf4a5e84b99b9f52cd1a3712d27779d23365
   ],
   controllers: [AppController],
-  providers: [AppService, ShoppingOrderService],
+  providers: [AppService],
 })
 export class AppModule {}
