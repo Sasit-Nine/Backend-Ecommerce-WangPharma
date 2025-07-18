@@ -35,11 +35,6 @@ export class AppController {
     return await this.productsService.searchProducts(data);
   }
 
-  @Post('/member')
-  async createMem(@Body() createDto: CreateMemberDto) {
-    return this.memberService.createMem(createDto);
-  }
-
   @Get('last6/:memCode')
   async getLast6Orders(@Param('memCode') memCode: string): Promise<ShoppingOrderEntity[]> {
     return this.shoppingOrderService.getLast6OrdersByMemberCode(memCode);
