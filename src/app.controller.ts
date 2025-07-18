@@ -4,7 +4,6 @@ import { AuthService, SigninResponse } from './auth/auth.service';
 import { ProductsService } from './products/products.service';
 import { CreateProductDto } from './products/create-product.dto';
 import { CreateMemberDto } from './members/create-member.dto';
-import { MembersService } from './members/members.service';
 import { CreateShoppingCartDto } from './shopping-cart/create-shopping-cart.dto';
 import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
 import { ShoppingOrderService } from './shopping-order/shopping-order.service';
@@ -17,7 +16,6 @@ export class AppController {
     private readonly appService: AppService,
     private readonly authService: AuthService,
     private readonly productsService: ProductsService,
-    private readonly memberService: MembersService,
     private readonly cartService: ShoppingCartService,
     private readonly shoppingOrderService: ShoppingOrderService,
     
