@@ -115,52 +115,34 @@ export class ShoppingCartService {
             .getMany();
     }
 
-    async getProductCart(mem_code: string): Promise<ShoppingCartEntity[]> {
-        const data = await this.cartRepo.find({
-            where: {
-                member: { mem_code: mem_code }
-            },
-            select: {
-                spc_amount: true,
-                spc_check: true,
-                product: {
-                    pro_code: true,
-                    pro_name: true,
-                    pro_imgmain: true,
-                    pro_priceA: true,
-                    pro_priceB: true,
-                    pro_priceC: true,
-                    pro_un
-                }
-            }
-        })
-        // const cartItems = await this.cartRepo
-        //     .createQueryBuilder('cart')
-        //     .leftJoinAndSelect('cart.product', 'product')
-        //     .leftJoinAndSelect('cart.member', 'member')
-        //     .where('member.mem_code = :mem_code', { mem_code })
-        //     .getMany();
+    async getProductCart(mem_code: string): Promise<ProductCartDto[]> {
+        const cartItems = await this.cartRepo
+            .createQueryBuilder('cart')
+            .leftJoinAndSelect('cart.product', 'product')
+            .leftJoinAndSelect('cart.member', 'member')
+            .where('member.mem_code = :mem_code', { mem_code })
+            .getMany();
 
-        // return cartItems.map(item => ({
-        //     mem_code: item.member.mem_code,
-        //     cart: {
-        //         spc_amount: item.spc_amount,
-        //         spc_check: item.spc_check,
-        //     },
-        //     products: {
-        //         pro_code: item.product.pro_code,
-        //         pro_name: item.product.pro_name,
-        //         pro_imagemain: item.product.pro_imgmain,
-        //         pro_priceA: item.product.pro_priceA,
-        //         pro_priceB: item.product.pro_priceB,
-        //         pro_priceC: item.product.pro_priceC,
-        //         pro_unit1: item.product['pro_unit1'],
-        //         pro_ratio1: item.product['pro_ratio1'],
-        //         pro_unit2: item.product['pro_unit2'],
-        //         pro_ratio2: item.product['pro_ratio2'],
-        //         pro_unit3: item.product['pro_unit3'],
-        //         pro_ratio3: item.product['pro_ratio3'],
-        //     }
-        // }));
+        return cartItems.map(item => ({
+            mem_code: item.member.mem_code,
+            cart: {
+                spc_amount: item.spc_amount,
+                spc_check: item.spc_check,
+            },
+            products: {
+                pro_code: item.product.pro_code,
+                pro_name: item.product.pro_name,
+                pro_imagemain: item.product.pro_imgmain,
+                pro_priceA: item.product.pro_priceA,
+                pro_priceB: item.product.pro_priceB,
+                pro_priceC: item.product.pro_priceC,
+                pro_unit1: item.product['pro_unit1'],
+                pro_ratio1: item.product['pro_ratio1'],
+                pro_unit2: item.product['pro_unit2'],
+                pro_ratio2: item.product['pro_ratio2'],
+                pro_unit3: item.product['pro_unit3'],
+                pro_ratio3: item.product['pro_ratio3'],
+            }
+        }));
     }
 }

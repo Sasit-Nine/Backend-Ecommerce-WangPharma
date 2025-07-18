@@ -7,6 +7,7 @@ import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
 import { ShoppingOrderService } from './shopping-order/shopping-order.service';
 import { ShoppingOrderEntity } from './shopping-order/shopping-order.entity';
 import { ShoppingCartEntity } from './shopping-cart/shopping-cart.entity';
+import { UpdateCartDto } from './shopping-cart/UpdateCartDto.dto';
 
 @Controller()
 export class AppController {
@@ -16,7 +17,7 @@ export class AppController {
     private readonly productsService: ProductsService,
     private readonly cartService: ShoppingCartService,
     private readonly shoppingOrderService: ShoppingOrderService,
-    
+
   ) { }
 
   @Post('/ecom/login')
@@ -55,25 +56,16 @@ export class AppController {
     }
   }
 
-// @Put('/ecom/cart/:spc_id')
-// async updateCartItem(
-//   @Param('spc_id', ParseIntPipe) spc_id: number,
-//   @Body() updateDto: UpdateCartDto, // ใช้ DTO ที่กำหนดชัดเจน
-// ) {
-//   return this.cartService.updateCart(spc_id, updateDto);
-// }
+  @Put('/ecom/cart/:spc_id')
+  async updateCartItem(
+    @Param('spc_id', ParseIntPipe) spc_id: number,
+    @Body() updateDto: ShoppingCartEntity,
+  ) {
+    return this.cartService.updateCart(spc_id, updateDto);
+  }
 
   @Delete('/ecom/cart/remove')
   async deleteCart(@Body() dto: ShoppingCartEntity) {
     return this.cartService.deleteCart(dto);
-  }
-
-  @Get('/ecom/product-cart')
-  async cartPage(@Param('mem_code') mem_code: string) {
-    return this.cartService.getProductCart(mem_code);
-  }
-  @Get('/ecom/product-coin')
-  async productCoin() {
-    return await this.productsService.listFree();
   }
 }
