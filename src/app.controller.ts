@@ -2,13 +2,14 @@ import { BadRequestException, Body, Controller, Delete, Get, HttpException, Http
 import { AppService } from './app.service';
 import { AuthService, SigninResponse } from './auth/auth.service';
 import { ProductsService } from './products/products.service';
-import { CreateProductDto } from './products/create-product.dto';
+// import { CreateProductDto } from './products/create-product.dto';
 import { CreateMemberDto } from './members/create-member.dto';
 import { CreateShoppingCartDto } from './shopping-cart/create-shopping-cart.dto';
 import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
 import { ShoppingOrderService } from './shopping-order/shopping-order.service';
 import { ShoppingOrderEntity } from './shopping-order/shopping-order.entity';
 import { ShoppingCartEntity } from './shopping-cart/shopping-cart.entity';
+
 
 @Controller()
 export class AppController {
@@ -18,7 +19,7 @@ export class AppController {
     private readonly productsService: ProductsService,
     private readonly cartService: ShoppingCartService,
     private readonly shoppingOrderService: ShoppingOrderService,
-    
+
   ) { }
 
   @Post('/ecom/login')
@@ -35,18 +36,18 @@ export class AppController {
     return await this.productsService.searchProducts(data);
   }
 
-  @Get('last6/:memCode')
+  @Get('/ecom/last6/:memCode')
   async getLast6Orders(@Param('memCode') memCode: string): Promise<ShoppingOrderEntity[]> {
     return this.shoppingOrderService.getLast6OrdersByMemberCode(memCode);
   }
 
-  @Get('/cart/:mem_code')
+  @Get('/ecom/cart/:mem_code')
   async getCartByMember(@Param('mem_code') mem_code: string) {
-    return this.cartService.getCartByMember(mem_code);
+    return this.cartService.getProductCart(mem_code);
   }
 
-  @Post('/cart')
-  async addCart(@Body() dto: ShoppingCartEntity) {
+  @Post('/ecom/cart')
+  async addCart(@Body() dto: CreateShoppingCartDto) {
     try {
       console.log("SUCCESS")
       return this.cartService.createShoppingCart(dto);
@@ -57,17 +58,22 @@ export class AppController {
     }
   }
 
-  @Put('/ecom/cart/:spc_id')
-  async updateCartItem(
-    @Param('spc_id', ParseIntPipe) spc_id: number,
-    @Body() updateDto: ShoppingCartEntity,
-  ) {
-    return this.cartService.updateCart(spc_id, updateDto);
-  }
+@Put('/ecom/cart/:spc_id')
+async updateCartItem(
+  @Param('spc_id', ParseIntPipe) spc_id: number,
+  @Body() updateDto: UpdateCartDto, // ใช้ DTO ที่กำหนดชัดเจน
+) {
+  return this.cartService.updateCart(spc_id, updateDto);
+}
 
-  @Delete('/cart')
+  @Delete('/ecom/cart/remove')
   async deleteCart(@Body() dto: ShoppingCartEntity) {
     return this.cartService.deleteCart(dto);
+  }
+
+  @Get('/ecom/product-cart')
+  async cartPage(@Param('mem_code') mem_code: string) {
+    return this.cartService.getProductCart(mem_code);
   }
   @Get('/ecom/product-coin')
   async productCoin() {

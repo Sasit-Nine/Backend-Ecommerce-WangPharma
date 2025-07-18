@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { ShoppingOrderEntity } from 'src/shopping-order/shopping-order.entity';
 import { ShoppingHeadEntity } from 'src/shopping-head/shopping-head.entity';
 import { ProductEntity } from 'src/products/products.entity';
-import { MemberEntity } from 'src/members/members.entity';
+// import { MemberEntity } from 'src/members/members.entity';
 
 interface ProductDto {
   proname: string;
@@ -35,5 +35,6 @@ export class ShoppingOrderService {
       .getMany();
   }
 
+  
   
 }

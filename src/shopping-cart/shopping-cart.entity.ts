@@ -32,10 +32,10 @@ export class ShoppingCartEntity {
   spc_check: '0' | '1';
 
   @ManyToOne(() => UserEntity, (member) => member.shoppingCartItems)
-  @JoinColumn({ name: 'mem_id' }) // Using ID for relation
+  @JoinColumn({ name: 'mem_code' }) // Using ID for relation
   member: UserEntity;
 
   @ManyToOne(() => ProductEntity, (product) => product.inCarts)
-  @JoinColumn({ name: 'pro_id' }) // Using ID for relation
+  @JoinColumn({ name: 'pro_code' }) // Using ID for relation
   product: ProductEntity;
 }

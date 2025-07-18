@@ -32,8 +32,8 @@ export class CreateShoppingCartDto {
   spc_comments?: string;
 
   @IsNumber()
-  mem_id: number;
+  mem_code: string;
 
   @IsNumber()
-  pro_id: number;
+  pro_code: string;
 }
