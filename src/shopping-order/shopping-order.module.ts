@@ -1,11 +1,15 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ShoppingOrderEntity } from './shopping-order.entity';
-import { ShoppingHeadService } from 'src/shopping-head/shopping-head.service';
 import { ShoppingOrderService } from './shopping-order.service';
+import { ShoppingCartModule } from 'src/shopping-cart/shopping-cart.module';
+import { ShoppingHeadEntity } from './../shopping-head/shopping-head.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ShoppingOrderEntity])],
+  imports: [
+    TypeOrmModule.forFeature([ShoppingOrderEntity, ShoppingHeadEntity]),
+    ShoppingCartModule,
+  ],
   providers: [ShoppingOrderService],
   exports: [ShoppingOrderService],
 })

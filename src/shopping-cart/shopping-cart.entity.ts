@@ -16,13 +16,22 @@ export class ShoppingCartEntity {
   @Column({ type: 'decimal', precision: 16, scale: 2 })
   spc_amount: number;
 
-  @Column({ length: 120, nullable: true })
-  spc_unit1: string;
+  @Column({ length: 50, nullable: true })
+  spc_unit: string;
 
-  @Column({ type: 'enum', enum: ['1', '2', '3'], nullable: true })
-  spc_unit2: '1' | '2' | '3';
+  @Column({ length: 20 })
+  pro_code: string;
 
-  @Column({ type: 'datetime' })
+  @Column({ length: 30 })
+  mem_code: string;
+
+  @Column({ default: true })
+  spc_checked: boolean;
+
+  // @Column({ type: 'enum', enum: ['1', '2', '3'], nullable: true })
+  // spc_unit: '1' | '2' | '3';
+
+  @Column({ type: 'timestamp' })
   spc_datetime: Date;
 
   @Column({ type: 'text', nullable: true })

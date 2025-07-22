@@ -8,6 +8,6 @@ import { UserEntity } from 'src/users/users.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([ShoppingCartEntity, ProductEntity, UserEntity,])],
   providers: [ShoppingCartService],
-  exports: [ShoppingCartService]
+  exports: [ShoppingCartService],
 })
 export class ShoppingCartModule { }
