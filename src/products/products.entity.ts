@@ -3,7 +3,6 @@ import { ProductPharmaEntity } from './product-pharma.entity';
 import { ShoppingCartEntity } from 'src/shopping-cart/shopping-cart.entity';
 import { ShoppingOrderEntity } from 'src/shopping-order/shopping-order.entity';
 import { FavoriteEntity } from 'src/favorite/favorite.entity';
-import { FlashSaleEntity } from 'src/flashsale/flashsale.entity';
 
 @Entity({ name: 'product' })
 export class ProductEntity {
@@ -97,14 +96,14 @@ export class ProductEntity {
   @Column({ type: 'decimal', precision: 6, scale: 1, nullable: true })
   pro_utility: number;
 
+  @Column({ default: false })
+  pro_is_flashsale: boolean;
+
   @OneToOne(() => ProductPharmaEntity, (pharma) => pharma.product)
   pharmaDetails: ProductPharmaEntity;
 
   @OneToMany(() => ShoppingCartEntity, (cart) => cart.product)
   inCarts: ShoppingCartEntity[];
-
-  @OneToMany(() => FlashSaleEntity, (cart) => cart.product)
-  flashsale: FlashSaleEntity[];
 
   @OneToMany(() => FavoriteEntity, (favorite) => favorite.product)
   inFavorite: FavoriteEntity[];

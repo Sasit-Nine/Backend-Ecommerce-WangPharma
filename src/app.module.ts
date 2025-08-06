@@ -12,10 +12,11 @@ import { ShoppingOrderModule } from './shopping-order/shopping-order.module';
 import { ShoppingHeadModule } from './shopping-head/shopping-head.module';
 import { FailedApiModule } from './failed-api/failed-api.module';
 import { FavoriteModule } from './favorite/favorite.module';
-import { FlashsaleModule } from './flashsale/flashsale.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     AuthModule,
     UsersModule,
     ConfigModule.forRoot({
@@ -42,7 +43,6 @@ import { FlashsaleModule } from './flashsale/flashsale.module';
     ShoppingHeadModule,
     FailedApiModule,
     FavoriteModule,
-    FlashsaleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -9,7 +9,6 @@ import { ShoppingHeadService } from './shopping-head/shopping-head.service';
 import { ShoppingOrderService } from './shopping-order/shopping-order.service';
 import { AllOrderByMemberRes } from './shopping-head/types/AllOrderByMemberRes.type';
 import { FavoriteService } from './favorite/favorite.service';
-import { FlashsaleService } from './flashsale/flashsale.service';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 
@@ -23,8 +22,13 @@ export class AppController {
     private readonly shoppingOrderService: ShoppingOrderService,
     private readonly shoppingHeadService: ShoppingHeadService,
     private readonly favoriteService: FavoriteService,
-    private readonly flashsaleService: FlashsaleService,
   ) {}
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/ecom/flashsale/:limit')
+  async listFlashSale(@Param('limit') limit: number) {
+    return await this.productsService.listFlashSale(limit);
+  }
 
   @UseGuards(JwtAuthGuard)
   @Get('/ecom/favorite/:mem_code')
@@ -32,11 +36,6 @@ export class AppController {
     console.log('get data favorite');
     return await this.favoriteService.getListFavorite(mem_code);
   }
-
-  // @Get('/ecom/flashsale')
-  // async getDataFlashSale() {
-  //   return await this.flashsaleService.getListFlashSale();
-  // }
 
   @UseGuards(JwtAuthGuard)
   @Post('/ecom/favorite/add')

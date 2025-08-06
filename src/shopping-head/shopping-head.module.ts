@@ -8,6 +8,6 @@ import { ProductsModule } from 'src/products/products.module';
 @Module({
   imports: [TypeOrmModule.forFeature([ShoppingHeadEntity]), ProductsModule],
   providers: [ShoppingHeadService],
-  exports: [ShoppingHeadService]
+  exports: [ShoppingHeadService],
 })
 export class ShoppingHeadModule {}
